@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:untitled2/homepage.dart';
-import 'package:untitled2/sizeconfig/sizeconig.dart';
+import 'package:untitled2/core/sizeconfig/sizeconig.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

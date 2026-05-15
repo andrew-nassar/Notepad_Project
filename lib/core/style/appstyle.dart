@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled2/sizeconfig/sizeconig.dart';
+
+import '../sizeconfig/sizeconig.dart';
 
 class Appstyle {
   static Color bgcolor = Colors.white ;
