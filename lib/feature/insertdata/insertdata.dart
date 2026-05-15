@@ -69,30 +69,62 @@ class _InsertdataState extends State<Insertdata> {
                 title: 'Add Note'), // استدعاء الـ Widget المنفصل
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(
-                    Sizeconig.defaultsize! * 2.4), // Padding متجاوب
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start, // [cite: 20]
-                    children: [
-                      Text(getFormattedDateTime(),
-                          style: Appstyle.datetittle), // [cite: 20, 21]
-                      SizedBox(height: spacing),
-                      CustomNoteField(
-                        controller: title,
-                        hint: 'Title',
-                        style: Appstyle.maintittle
-                            .copyWith(fontSize: 32, color: Colors.black26),
+                padding: EdgeInsets.symmetric(
+                  horizontal: Sizeconig.defaultsize! * 2.4, // بادينج جانبي ثابت
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // 1. التاريخ في الأعلى بمسافة بسيطة
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16.0),
+                              child: Text(getFormattedDateTime(),
+                                  style: Appstyle.datetittle),
+                            ),
+
+                            SizedBox(height: spacing),
+
+                            // 2. حقل العنوان (Title) - نحدده بـ maxLines: 1 ليكون سطر واحد فقط
+                            CustomNoteField(
+                              controller: title,
+                              hint: 'Title',
+                              maxLines: 1,
+                              style: Appstyle.maintittle.copyWith(
+                                fontSize: 32,
+                                color: Colors
+                                    .black, // تغيير اللون ليكون أوضح من الهينت
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                            // 3. فاصل بصري (Divider) - اختياري حسب ذوقك
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Divider(
+                                thickness: 1,
+                                color: Colors.grey.withOpacity(0.2),
+                              ),
+                            ),
+
+                            // 4. حقل المحتوى (Content)
+                            CustomNoteField(
+                              controller: content,
+                              hint: 'Start typing your thoughts...',
+                              style:
+                                  Appstyle.maincontent.copyWith(fontSize: 18),
+                              maxLines: null, // يسمح بالتوسع لأسفل
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(height: spacing / 2),
-                      CustomNoteField(
-                        controller: content,
-                        hint: 'Start typing your thoughts...',
-                        style: Appstyle.maincontent.copyWith(fontSize: 18),
-                        maxLines: null,
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
